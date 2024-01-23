@@ -58,7 +58,7 @@
                 echo 'Senza parcheggio';
             }
     
-            echo " | " . $hotel["vote"] . ' ' 
+            echo " | " . $hotel["vote"] . '| ' 
                     . $hotel["distance_to_center"] . 'm'
                     . "</h2>";
         }
