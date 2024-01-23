@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>php-hotel</title>
 </head>
 <body>
@@ -50,20 +53,66 @@
         ];
 
         foreach ($hotels as $hotel) {
-            echo "<h2>" . $hotel["name"] . " - " . $hotel["description"] . " | ";
+            echo "<h2>" . $hotel["name"]  . "</h2>"  . "<span class='descrizione'>" . $hotel["description"] . "</span>";
             
-            if ($hotel['parking'] === true) {
-                echo 'Parcheggio';
+            if ($hotel['parking']) {
+                echo '<i class="fa-solid fa-square-parking" style="color: #63E6BE;"></i>';
             } else {
-                echo 'Senza parcheggio';
+                echo '<i class="fa-solid fa-square-parking" style="color: red;"></i>';
             }
     
-            echo " | " . $hotel["vote"] . '| ' 
-                    . $hotel["distance_to_center"] . 'm'
-                    . "</h2>";
+            echo " | <span class='rating'>";
+
+            for ($i = 1; $i <= 5; $i++) {
+                if ($i <= $hotel["vote"]) {
+                    echo '<i class="fa-solid fa-star"></i>';
+                }  else {
+                    echo '<i class="fa-regular fa-star"></i>';
+                }
+            }
+
+            echo "</span> | <i class='fa-solid fa-person-walking-arrow-right'></i> " . $hotel["distance_to_center"] . 'm</span>';
         }
     ?>
 
 </body>
 </html>
+
+<style>
+    :root{
+        font-family: Arial, sans-serif;
+        font-size:18px
+    }
+
+    body {
+        margin: 40px;
+    }
+
+    h2 {
+        margin-bottom: 5px;
+    }
+
+    .descrizione {
+        color: #666;
+        font-style: italic;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .fa-square-parking {
+        margin-right: 5px;
+    }
+
+    .rating {
+        color: #FFD700; 
+    }
+
+    
+    .rating i {
+        font-size: 20px;
+        margin: 0 2px;
+    }
+
+   
+</style>
 
