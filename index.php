@@ -6,10 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <title>php-hotel</title>
 </head>
 <body>
-    
+<div class="container">
+        <table class="table">
+            <thead class="thead-dark ">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Parking</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col">Distance to Center</th>
+                </tr>
+            </thead>
+            <tbody>
     <?php
 
         $hotels = [
@@ -52,17 +64,19 @@
 
         ];
 
-        foreach ($hotels as $hotel) {
-            echo "<h2>" . $hotel["name"]  . "</h2>"  . "<span class='descrizione'>" . $hotel["description"] . "</span>";
-            
+        foreach ($hotels as $index => $hotel) {
+            echo "<tr >";
+            echo "<th class='row'>" . ($index + 1) . "</th>";
+            echo "<td>" . $hotel["name"]  . "</td>";
+            echo "<td><span class='descrizione'>" . $hotel["description"] . "</span></td>";
+            echo "<td>";
             if ($hotel['parking']) {
                 echo '<i class="fa-solid fa-square-parking" style="color: #63E6BE;"></i>';
             } else {
                 echo '<i class="fa-solid fa-square-parking" style="color: red;"></i>';
             }
-    
-            echo " | <span class='rating'>";
-
+            echo "</td>";
+            echo "<td>";
             for ($i = 1; $i <= 5; $i++) {
                 if ($i <= $hotel["vote"]) {
                     echo '<i class="fa-solid fa-star"></i>';
@@ -70,22 +84,21 @@
                     echo '<i class="fa-regular fa-star"></i>';
                 }
             }
-
-            echo "</span> | <i class='fa-solid fa-person-walking-arrow-right'></i> " . $hotel["distance_to_center"] . 'm</span>';
+            echo "</td>";
+            echo "<td><i class='fa-solid fa-person-walking-arrow-right'></i> " . $hotel["distance_to_center"] . 'm</td>';
+            echo "</tr>";
         }
-    ?>
-
+        ?>
+    </tbody>
+</table>
+</div>
 </body>
 </html>
 
 <style>
-    :root{
+     :root {
         font-family: Arial, sans-serif;
-        font-size:18px
-    }
-
-    body {
-        margin: 40px;
+        font-size: 18px
     }
 
     h2 {
@@ -104,15 +117,13 @@
     }
 
     .rating {
-        color: #FFD700; 
+        color: #FFD700;
     }
 
-    
     .rating i {
         font-size: 20px;
         margin: 0 2px;
     }
-
    
 </style>
 
